@@ -8,20 +8,36 @@ let db
 
 connectToDb((err) => {
     if (!err) {
-        const PORT = process.env.PORT || 3001
-        app.listen(PORT, () => {
-            console.log(`app running on port: ${PORT}`)
-        })
-
         db = getDb()
     }
 })
 
 app.get('/aliens', (req, res) => { 
+    //check if specific parameters are requested
+    const parameters = {
+        name: req.query.name || true,
+        species: req.query.species || true,
+        home_world: req.query.home_world || true,
+        abilities:req.query.abilities || true,
+        image: req.query.image || true
+    }
+
+    for (let key of Object.keys(parameters)) { //remove parameter if it doesnt === "false". We will only specifiy what params NOT to return later.
+        let param = parameters[key]
+        if (param !== "false") {
+            delete parameters[key]
+            continue
+        }
+        parameters[key] = 0
+    }
+
+    parameters._id = 0
+
     let aliens = []
 
     db.collection('aliens')
     .find()
+    .project(parameters)
     .forEach(alien => aliens.push(alien))
     .then(() => {
         res.status(200).json(aliens)
@@ -42,3 +58,5 @@ app.get('/aliens/:id', (req, res) => {
         res.status(500).json({error: 'could not fetch doc'})
     })
 })
+
+module.exports = {app}
