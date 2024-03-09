@@ -1,8 +1,9 @@
 const {MongoClient} = require('mongodb')
-const {creds} = require('./credentials')
+const {mongoUser, mongoPassword, mongoCluster} = require('./credentials')
 
 let dbConnection
-let uri = `mongodb+srv://${creds.mongoUser}:${creds.mongoPassword}@${creds.mongoCluster}.mongodb.net/`
+let uri = `mongodb+srv://${mongoUser}:${mongoPassword}@${mongoCluster}.mongodb.net/`
+
 
 module.exports = {
     connectToDb: (cb) => {
