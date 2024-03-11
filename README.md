@@ -46,4 +46,4 @@ These parameter limiters can also be used with specific alien GET requests:
 `GET http://localhost:3001/aliens/Heatblast?name=false&home_world=false`
 
 ---
-This repository is set up to be run on either a local machine or a node hosting website such as [heroku](heroku.com).
+This repository is set up to be run on either a local machine or a node hosting website such as [heroku](https://heroku.com).
