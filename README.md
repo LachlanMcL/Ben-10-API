@@ -42,7 +42,7 @@ return a list of JSON objects containing all the statistics except the "name" st
 
 The parameters that can be used are `name`, `species`, `home_world`, `abilities`, and `image`.
 
-These parameter limiters can also be used with specific alien GET requests:
+These parameter limiters can also be used with specific alien GET requests: \n
 `GET http://localhost:3001/aliens/Heatblast?name=false&home_world=false`
 
 ---
